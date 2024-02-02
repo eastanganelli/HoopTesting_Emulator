@@ -1,0 +1,922 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="windowModality">
+   <enum>Qt::WindowModal</enum>
+  </property>
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>979</width>
+    <height>385</height>
+   </rect>
+  </property>
+  <property name="minimumSize">
+   <size>
+    <width>979</width>
+    <height>385</height>
+   </size>
+  </property>
+  <property name="maximumSize">
+   <size>
+    <width>979</width>
+    <height>385</height>
+   </size>
+  </property>
+  <property name="font">
+   <font>
+    <pointsize>11</pointsize>
+   </font>
+  </property>
+  <property name="windowTitle">
+   <string>MainWindow</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <layout class="QGridLayout" name="gridLayout">
+    <item row="0" column="0">
+     <widget class="QGroupBox" name="station_1">
+      <property name="font">
+       <font>
+        <pointsize>11</pointsize>
+       </font>
+      </property>
+      <property name="autoFillBackground">
+       <bool>false</bool>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QGroupBox {
+	border: 2px solid red; 
+    border-radius: 20%;
+}
+
+QGroupBox:title {
+	margin-top: 10px;
+	background-color: rgba(255, 255, 255, 0%);
+}
+font-size: 11px;
+
+QLabel {
+	font-size: 11px;
+}</string>
+      </property>
+      <property name="title">
+       <string>Station 1</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignHCenter|Qt::AlignTop</set>
+      </property>
+      <property name="flat">
+       <bool>true</bool>
+      </property>
+      <layout class="QGridLayout" name="gridLayout_3">
+       <item row="3" column="1">
+        <widget class="QLabel" name="lblStationRT_1">
+         <property name="font">
+          <font>
+           <pointsize>11</pointsize>
+          </font>
+         </property>
+         <property name="text">
+          <string>Temperature: 0 C</string>
+         </property>
+         <property name="textFormat">
+          <enum>Qt::PlainText</enum>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignJustify|Qt::AlignVCenter</set>
+         </property>
+         <property name="wordWrap">
+          <bool>true</bool>
+         </property>
+         <property name="margin">
+          <number>1</number>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="1">
+        <widget class="QLabel" name="lblStationRP_1">
+         <property name="font">
+          <font>
+           <pointsize>11</pointsize>
+          </font>
+         </property>
+         <property name="text">
+          <string>Pressure: 0 bar</string>
+         </property>
+         <property name="textFormat">
+          <enum>Qt::PlainText</enum>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignJustify|Qt::AlignVCenter</set>
+         </property>
+         <property name="wordWrap">
+          <bool>true</bool>
+         </property>
+         <property name="margin">
+          <number>1</number>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="0" colspan="2">
+        <widget class="QLabel" name="lblStation_1">
+         <property name="font">
+          <font>
+           <pointsize>11</pointsize>
+          </font>
+         </property>
+         <property name="text">
+          <string>Status:  Off</string>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="0">
+        <widget class="QLabel" name="lblStationTP_1">
+         <property name="font">
+          <font>
+           <pointsize>11</pointsize>
+          </font>
+         </property>
+         <property name="text">
+          <string>Target Pressure: 0 bar</string>
+         </property>
+         <property name="textFormat">
+          <enum>Qt::PlainText</enum>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignJustify|Qt::AlignVCenter</set>
+         </property>
+         <property name="wordWrap">
+          <bool>true</bool>
+         </property>
+         <property name="margin">
+          <number>1</number>
+         </property>
+        </widget>
+       </item>
+       <item row="3" column="0">
+        <widget class="QLabel" name="lblStationTT_1">
+         <property name="font">
+          <font>
+           <pointsize>11</pointsize>
+          </font>
+         </property>
+         <property name="text">
+          <string>Target Temp: 0 C</string>
+         </property>
+         <property name="textFormat">
+          <enum>Qt::PlainText</enum>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignJustify|Qt::AlignVCenter</set>
+         </property>
+         <property name="wordWrap">
+          <bool>true</bool>
+         </property>
+         <property name="margin">
+          <number>1</number>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </item>
+    <item row="0" column="1">
+     <widget class="QGroupBox" name="station_2">
+      <property name="font">
+       <font>
+        <pointsize>11</pointsize>
+       </font>
+      </property>
+      <property name="autoFillBackground">
+       <bool>false</bool>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QGroupBox {
+	border: 2px solid red; 
+    border-radius: 20%;
+}
+
+QGroupBox:title {
+	margin-top: 10px;
+	background-color: rgba(255, 255, 255, 0%);
+}
+font-size: 11px;
+
+QLabel {
+	font-size: 11px;
+}</string>
+      </property>
+      <property name="title">
+       <string>Station 2</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignHCenter|Qt::AlignTop</set>
+      </property>
+      <property name="flat">
+       <bool>true</bool>
+      </property>
+      <layout class="QGridLayout" name="gridLayout_4">
+       <item row="2" column="1">
+        <widget class="QLabel" name="lblStationRP_2">
+         <property name="font">
+          <font>
+           <pointsize>11</pointsize>
+          </font>
+         </property>
+         <property name="text">
+          <string>Pressure: 0 bar</string>
+         </property>
+         <property name="textFormat">
+          <enum>Qt::PlainText</enum>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignJustify|Qt::AlignVCenter</set>
+         </property>
+         <property name="wordWrap">
+          <bool>true</bool>
+         </property>
+         <property name="margin">
+          <number>1</number>
+         </property>
+        </widget>
+       </item>
+       <item row="3" column="1">
+        <widget class="QLabel" name="lblStationRT_2">
+         <property name="font">
+          <font>
+           <pointsize>11</pointsize>
+          </font>
+         </property>
+         <property name="text">
+          <string>Temperature: 0 C</string>
+         </property>
+         <property name="textFormat">
+          <enum>Qt::PlainText</enum>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignJustify|Qt::AlignVCenter</set>
+         </property>
+         <property name="wordWrap">
+          <bool>true</bool>
+         </property>
+         <property name="margin">
+          <number>1</number>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="0" colspan="2">
+        <widget class="QLabel" name="lblStation_2">
+         <property name="font">
+          <font>
+           <pointsize>11</pointsize>
+          </font>
+         </property>
+         <property name="text">
+          <string>Status:  Off</string>
+         </property>
+        </widget>
+       </item>
+       <item row="3" column="0">
+        <widget class="QLabel" name="lblStationTT_2">
+         <property name="font">
+          <font>
+           <pointsize>11</pointsize>
+          </font>
+         </property>
+         <property name="text">
+          <string>Target Temp: 0 C</string>
+         </property>
+         <property name="textFormat">
+          <enum>Qt::PlainText</enum>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignJustify|Qt::AlignVCenter</set>
+         </property>
+         <property name="wordWrap">
+          <bool>true</bool>
+         </property>
+         <property name="margin">
+          <number>1</number>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="0">
+        <widget class="QLabel" name="lblStationTP_2">
+         <property name="font">
+          <font>
+           <pointsize>11</pointsize>
+          </font>
+         </property>
+         <property name="text">
+          <string>Target Pressure: 0 bar</string>
+         </property>
+         <property name="textFormat">
+          <enum>Qt::PlainText</enum>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignJustify|Qt::AlignVCenter</set>
+         </property>
+         <property name="wordWrap">
+          <bool>true</bool>
+         </property>
+         <property name="margin">
+          <number>1</number>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </item>
+    <item row="0" column="2">
+     <widget class="QGroupBox" name="station_3">
+      <property name="font">
+       <font>
+        <pointsize>11</pointsize>
+       </font>
+      </property>
+      <property name="autoFillBackground">
+       <bool>false</bool>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QGroupBox {
+	border: 2px solid red; 
+    border-radius: 20%;
+}
+
+QGroupBox:title {
+	margin-top: 10px;
+	background-color: rgba(255, 255, 255, 0%);
+}
+font-size: 11px;
+
+QLabel {
+	font-size: 11px;
+}</string>
+      </property>
+      <property name="title">
+       <string>Station 3</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignHCenter|Qt::AlignTop</set>
+      </property>
+      <property name="flat">
+       <bool>true</bool>
+      </property>
+      <layout class="QGridLayout" name="gridLayout_5">
+       <item row="3" column="1">
+        <widget class="QLabel" name="lblStationRT_3">
+         <property name="font">
+          <font>
+           <pointsize>11</pointsize>
+          </font>
+         </property>
+         <property name="text">
+          <string>Temperature: 0 C</string>
+         </property>
+         <property name="textFormat">
+          <enum>Qt::PlainText</enum>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignJustify|Qt::AlignVCenter</set>
+         </property>
+         <property name="wordWrap">
+          <bool>true</bool>
+         </property>
+         <property name="margin">
+          <number>1</number>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="0">
+        <widget class="QLabel" name="lblStationTP_3">
+         <property name="font">
+          <font>
+           <pointsize>11</pointsize>
+          </font>
+         </property>
+         <property name="text">
+          <string>Target Pressure: 0 bar</string>
+         </property>
+         <property name="textFormat">
+          <enum>Qt::PlainText</enum>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignJustify|Qt::AlignVCenter</set>
+         </property>
+         <property name="wordWrap">
+          <bool>true</bool>
+         </property>
+         <property name="margin">
+          <number>1</number>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="1">
+        <widget class="QLabel" name="lblStationRP_3">
+         <property name="font">
+          <font>
+           <pointsize>11</pointsize>
+          </font>
+         </property>
+         <property name="text">
+          <string>Pressure: 0 bar</string>
+         </property>
+         <property name="textFormat">
+          <enum>Qt::PlainText</enum>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignJustify|Qt::AlignVCenter</set>
+         </property>
+         <property name="wordWrap">
+          <bool>true</bool>
+         </property>
+         <property name="margin">
+          <number>1</number>
+         </property>
+        </widget>
+       </item>
+       <item row="3" column="0">
+        <widget class="QLabel" name="lblStationTT_3">
+         <property name="font">
+          <font>
+           <pointsize>11</pointsize>
+          </font>
+         </property>
+         <property name="text">
+          <string>Target Temp: 0 C</string>
+         </property>
+         <property name="textFormat">
+          <enum>Qt::PlainText</enum>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignJustify|Qt::AlignVCenter</set>
+         </property>
+         <property name="wordWrap">
+          <bool>true</bool>
+         </property>
+         <property name="margin">
+          <number>1</number>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="0" colspan="2">
+        <widget class="QLabel" name="lblStation_3">
+         <property name="font">
+          <font>
+           <pointsize>11</pointsize>
+          </font>
+         </property>
+         <property name="text">
+          <string>Status:  Off</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </item>
+    <item row="1" column="0">
+     <widget class="QGroupBox" name="station_4">
+      <property name="font">
+       <font>
+        <pointsize>11</pointsize>
+       </font>
+      </property>
+      <property name="autoFillBackground">
+       <bool>false</bool>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QGroupBox {
+	border: 2px solid red; 
+    border-radius: 20%;
+}
+
+QGroupBox:title {
+	margin-top: 10px;
+	background-color: rgba(255, 255, 255, 0%);
+}
+font-size: 11px;
+
+QLabel {
+	font-size: 11px;
+}</string>
+      </property>
+      <property name="title">
+       <string>Station 4</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignHCenter|Qt::AlignTop</set>
+      </property>
+      <property name="flat">
+       <bool>true</bool>
+      </property>
+      <layout class="QGridLayout" name="gridLayout_6">
+       <item row="2" column="1">
+        <widget class="QLabel" name="lblStationRP_4">
+         <property name="font">
+          <font>
+           <pointsize>11</pointsize>
+          </font>
+         </property>
+         <property name="text">
+          <string>Pressure: 0 bar</string>
+         </property>
+         <property name="textFormat">
+          <enum>Qt::PlainText</enum>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignJustify|Qt::AlignVCenter</set>
+         </property>
+         <property name="wordWrap">
+          <bool>true</bool>
+         </property>
+         <property name="margin">
+          <number>1</number>
+         </property>
+        </widget>
+       </item>
+       <item row="3" column="0">
+        <widget class="QLabel" name="lblStationTT_4">
+         <property name="font">
+          <font>
+           <pointsize>11</pointsize>
+          </font>
+         </property>
+         <property name="text">
+          <string>Target Temp: 0 C</string>
+         </property>
+         <property name="textFormat">
+          <enum>Qt::PlainText</enum>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignJustify|Qt::AlignVCenter</set>
+         </property>
+         <property name="wordWrap">
+          <bool>true</bool>
+         </property>
+         <property name="margin">
+          <number>1</number>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="0" colspan="2">
+        <widget class="QLabel" name="lblStation_4">
+         <property name="font">
+          <font>
+           <pointsize>11</pointsize>
+          </font>
+         </property>
+         <property name="text">
+          <string>Status:  Off</string>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="0">
+        <widget class="QLabel" name="lblStationTP_4">
+         <property name="font">
+          <font>
+           <pointsize>11</pointsize>
+          </font>
+         </property>
+         <property name="text">
+          <string>Target Pressure: 0 bar</string>
+         </property>
+         <property name="textFormat">
+          <enum>Qt::PlainText</enum>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignJustify|Qt::AlignVCenter</set>
+         </property>
+         <property name="wordWrap">
+          <bool>true</bool>
+         </property>
+         <property name="margin">
+          <number>1</number>
+         </property>
+        </widget>
+       </item>
+       <item row="3" column="1">
+        <widget class="QLabel" name="lblStationRT_4">
+         <property name="font">
+          <font>
+           <pointsize>11</pointsize>
+          </font>
+         </property>
+         <property name="text">
+          <string>Temperature: 0 C</string>
+         </property>
+         <property name="textFormat">
+          <enum>Qt::PlainText</enum>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignJustify|Qt::AlignVCenter</set>
+         </property>
+         <property name="wordWrap">
+          <bool>true</bool>
+         </property>
+         <property name="margin">
+          <number>1</number>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </item>
+    <item row="1" column="1">
+     <widget class="QGroupBox" name="station_5">
+      <property name="font">
+       <font>
+        <pointsize>11</pointsize>
+       </font>
+      </property>
+      <property name="autoFillBackground">
+       <bool>false</bool>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QGroupBox {
+	border: 2px solid red; 
+    border-radius: 20%;
+}
+
+QGroupBox:title {
+	margin-top: 10px;
+	background-color: rgba(255, 255, 255, 0%);
+}
+font-size: 11px;
+
+QLabel {
+	font-size: 11px;
+}</string>
+      </property>
+      <property name="title">
+       <string>Station 5</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignHCenter|Qt::AlignTop</set>
+      </property>
+      <layout class="QGridLayout" name="gridLayout_7">
+       <item row="0" column="0" colspan="2">
+        <widget class="QLabel" name="lblStation_5">
+         <property name="font">
+          <font>
+           <pointsize>11</pointsize>
+          </font>
+         </property>
+         <property name="text">
+          <string>Status:  Off</string>
+         </property>
+        </widget>
+       </item>
+       <item row="3" column="0">
+        <widget class="QLabel" name="lblStationTT_5">
+         <property name="font">
+          <font>
+           <pointsize>11</pointsize>
+          </font>
+         </property>
+         <property name="text">
+          <string>Target Temp: 0 C</string>
+         </property>
+         <property name="textFormat">
+          <enum>Qt::PlainText</enum>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignJustify|Qt::AlignVCenter</set>
+         </property>
+         <property name="wordWrap">
+          <bool>true</bool>
+         </property>
+         <property name="margin">
+          <number>1</number>
+         </property>
+        </widget>
+       </item>
+       <item row="3" column="1">
+        <widget class="QLabel" name="lblStationRT_5">
+         <property name="font">
+          <font>
+           <pointsize>11</pointsize>
+          </font>
+         </property>
+         <property name="text">
+          <string>Temperature: 0 C</string>
+         </property>
+         <property name="textFormat">
+          <enum>Qt::PlainText</enum>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignJustify|Qt::AlignVCenter</set>
+         </property>
+         <property name="wordWrap">
+          <bool>true</bool>
+         </property>
+         <property name="margin">
+          <number>1</number>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="1">
+        <widget class="QLabel" name="lblStationRP_5">
+         <property name="font">
+          <font>
+           <pointsize>11</pointsize>
+          </font>
+         </property>
+         <property name="text">
+          <string>Pressure: 0 bar</string>
+         </property>
+         <property name="textFormat">
+          <enum>Qt::PlainText</enum>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignJustify|Qt::AlignVCenter</set>
+         </property>
+         <property name="wordWrap">
+          <bool>true</bool>
+         </property>
+         <property name="margin">
+          <number>1</number>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="0">
+        <widget class="QLabel" name="lblStationTP_5">
+         <property name="font">
+          <font>
+           <pointsize>11</pointsize>
+          </font>
+         </property>
+         <property name="text">
+          <string>Target Pressure: 0 bar</string>
+         </property>
+         <property name="textFormat">
+          <enum>Qt::PlainText</enum>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignJustify|Qt::AlignVCenter</set>
+         </property>
+         <property name="wordWrap">
+          <bool>true</bool>
+         </property>
+         <property name="margin">
+          <number>1</number>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </item>
+    <item row="1" column="2">
+     <widget class="QGroupBox" name="station_6">
+      <property name="font">
+       <font>
+        <pointsize>11</pointsize>
+       </font>
+      </property>
+      <property name="autoFillBackground">
+       <bool>false</bool>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QGroupBox {
+	border: 2px solid red; 
+    border-radius: 20%;
+}
+
+QGroupBox:title {
+	margin-top: 10px;
+	background-color: rgba(255, 255, 255, 0%);
+}
+font-size: 11px;
+
+QLabel {
+	font-size: 11px;
+}</string>
+      </property>
+      <property name="title">
+       <string>Station 6</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignHCenter|Qt::AlignTop</set>
+      </property>
+      <property name="flat">
+       <bool>true</bool>
+      </property>
+      <layout class="QGridLayout" name="gridLayout_8">
+       <item row="3" column="0">
+        <widget class="QLabel" name="lblStationTT_6">
+         <property name="font">
+          <font>
+           <pointsize>11</pointsize>
+          </font>
+         </property>
+         <property name="text">
+          <string>Target Temp: 0 C</string>
+         </property>
+         <property name="textFormat">
+          <enum>Qt::PlainText</enum>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignJustify|Qt::AlignVCenter</set>
+         </property>
+         <property name="wordWrap">
+          <bool>true</bool>
+         </property>
+         <property name="margin">
+          <number>1</number>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="1">
+        <widget class="QLabel" name="lblStationRP_6">
+         <property name="font">
+          <font>
+           <pointsize>11</pointsize>
+          </font>
+         </property>
+         <property name="text">
+          <string>Pressure: 0 bar</string>
+         </property>
+         <property name="textFormat">
+          <enum>Qt::PlainText</enum>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignJustify|Qt::AlignVCenter</set>
+         </property>
+         <property name="wordWrap">
+          <bool>true</bool>
+         </property>
+         <property name="margin">
+          <number>1</number>
+         </property>
+        </widget>
+       </item>
+       <item row="3" column="1">
+        <widget class="QLabel" name="lblStationRT_6">
+         <property name="font">
+          <font>
+           <pointsize>11</pointsize>
+          </font>
+         </property>
+         <property name="text">
+          <string>Temperature: 0 C</string>
+         </property>
+         <property name="textFormat">
+          <enum>Qt::PlainText</enum>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignJustify|Qt::AlignVCenter</set>
+         </property>
+         <property name="wordWrap">
+          <bool>true</bool>
+         </property>
+         <property name="margin">
+          <number>1</number>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="0">
+        <widget class="QLabel" name="lblStationTP_6">
+         <property name="font">
+          <font>
+           <pointsize>11</pointsize>
+          </font>
+         </property>
+         <property name="text">
+          <string>Target Pressure: 0 bar</string>
+         </property>
+         <property name="textFormat">
+          <enum>Qt::PlainText</enum>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignJustify|Qt::AlignVCenter</set>
+         </property>
+         <property name="wordWrap">
+          <bool>true</bool>
+         </property>
+         <property name="margin">
+          <number>1</number>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="0" colspan="2">
+        <widget class="QLabel" name="lblStation_6">
+         <property name="font">
+          <font>
+           <pointsize>11</pointsize>
+          </font>
+         </property>
+         <property name="text">
+          <string>Status:  Off</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
