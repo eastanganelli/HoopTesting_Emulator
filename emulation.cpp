@@ -47,22 +47,19 @@ void Emulation::Sender() {
 }
 
 void Emulation::stationStarter(const QList<QByteArray> substring) {
-    u_int ID = substring[0].toUInt(),
-        pressure = substring[1].toUInt(),
-        temperature = substring[2].toUInt();
+    u_int ID = substring[1].toUInt(),
+        pressure = substring[2].toUInt(),
+        temperature = substring[3].toUInt();
     QGroupBox* stationUI = this->uiStations_->at(ID - 1);
-    Station* aux = (substring.length() == 3 ? new Station(stationUI, ID, pressure, temperature) : new Station(stationUI, ID, pressure, temperature, substring[3].toUInt()));
+    Station* aux = ((substring.length() == 4 && substring[0].toStdString() == "start") ? new Station(stationUI, ID, pressure, temperature) : new Station(stationUI, ID, pressure, temperature, substring[3].toUInt()));
     this->myStations.append(aux);
 }
 
 void Emulation::stationsStateController(QList<QByteArray> &substring) {
-    u_int ID = substring[0].toUInt(),
-        state = substring[1].toUInt();
+    u_int ID = substring[1].toUInt();
 
-    switch(state) {
-    case 1: {
+    if(substring[0].toStdString() == "stop") {
         unsigned int i = 0;
-        //this->myStations.remove();
         for(Station* myStation : this->myStations) {
             if(myStation->getID() == ID) {
                 delete myStation;
@@ -70,8 +67,5 @@ void Emulation::stationsStateController(QList<QByteArray> &substring) {
                 qDebug() << "Station " << ID << " stopped";
             } i++;
         }
-        break;
-    }
-    default: break;
     }
 }
