@@ -1,5 +1,9 @@
 #include "emulation.h"
 
+/**
+ * @brief Emulation::Emulation
+ * @param Stations_
+ */
 Emulation::Emulation(QList<QGroupBox*>* Stations_) {
     this->uiStations_ = Stations_;
     this->myPort = new QSerialPort();
@@ -11,6 +15,9 @@ Emulation::Emulation(QList<QGroupBox*>* Stations_) {
     this->myPort->open(QIODevice::ReadWrite);
 }
 
+/**
+ * @brief Emulation::~Emulation
+ */
 Emulation::~Emulation() {
     if(this->myStations.length() > 0) {
         for(Station* aux : this->myStations) { delete aux; }
@@ -19,6 +26,9 @@ Emulation::~Emulation() {
     delete this->myPort;
 }
 
+/**
+ * @brief Emulation::Reader
+ */
 void Emulation::Reader() {
     this->buffer.append(this->myPort->readAll());
     int index = this->buffer.indexOf('\n');
@@ -36,6 +46,9 @@ void Emulation::Reader() {
     }
 }
 
+/**
+ * @brief Emulation::Sender
+ */
 void Emulation::Sender() {
     this->myPort->clear();
     QList<QByteArray> msgs;
@@ -46,6 +59,10 @@ void Emulation::Sender() {
     this->myPort->waitForBytesWritten(_ms);
 }
 
+/**
+ * @brief Emulation::stationStarter
+ * @param substring
+ */
 void Emulation::stationStarter(const QList<QByteArray> substring) {
     u_int ID = substring[1].toUInt(),
         pressure = substring[2].toUInt(),
@@ -55,6 +72,10 @@ void Emulation::stationStarter(const QList<QByteArray> substring) {
     this->myStations.append(aux);
 }
 
+/**
+ * @brief Emulation::stationsStateController
+ * @param substring
+ */
 void Emulation::stationsStateController(QList<QByteArray> &substring) {
     u_int ID = substring[1].toUInt();
 
