@@ -4,7 +4,7 @@
  * @brief Emulation::Emulation
  * @param Stations_
  */
-Emulation::Emulation(QList<QGroupBox*>* Stations_) {
+Emulation::Emulation(QList<QGroupBox*>* Stations_, QLabel* status_) {
     this->uiStations_ = Stations_;
     this->myPort = new QSerialPort();
     this->myPort->setPortName("COM28");
@@ -13,6 +13,14 @@ Emulation::Emulation(QList<QGroupBox*>* Stations_) {
     this->myPort->setParity(QSerialPort::NoParity);
     this->myPort->setStopBits(QSerialPort::OneStop);
     this->myPort->open(QIODevice::ReadWrite);
+
+    if(this->myPort->isOpen()) {
+        status_->setText("Serial Port: " + this->myPort->portName());
+        status_->setStyleSheet("color: Green");
+    } else {
+        status_->setText("Serial Port: None");
+        status_->setStyleSheet("color: Red");
+    }
 }
 
 /**

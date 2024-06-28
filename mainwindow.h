@@ -3,6 +3,7 @@
 
 #include <QMainWindow>
 #include <QTimer>
+#include <QSharedPointer>
 
 #include "emulation.h"
 
@@ -15,11 +16,18 @@ class MainWindow : public QMainWindow {
 public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
+private slots:
+    void on_cbChangeTime_currentTextChanged(const QString &timeSelected);
+
+    void on_btnStartStop_clicked();
+
 private:
     Ui::MainWindow *ui;
     QTimer* mSerialTimer;
     Emulation* myEmulator;
     QList<QGroupBox*>* Stations;
+    QSharedPointer<unsigned int> TimeSpeed
+;
 };
 
 #endif // MAINWINDOW_H

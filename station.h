@@ -7,7 +7,7 @@
 #include <QGroupBox>
 #include <QLabel>
 
-#define _ms 250
+#define _ms 1000
 
 typedef unsigned int u_int;
 

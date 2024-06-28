@@ -5,6 +5,7 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent) , ui(new Ui::MainW
     ui->setupUi(this);
 
     this->Stations = new QList<QGroupBox*>();
+    this->TimeSpeed = QSharedPointer<unsigned int>(new unsigned int(1000));
 
     this->Stations->append(this->ui->station_1);
     this->Stations->append(this->ui->station_2);
@@ -13,13 +14,16 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent) , ui(new Ui::MainW
     this->Stations->append(this->ui->station_5);
     this->Stations->append(this->ui->station_6);
 
-    this->myEmulator = new Emulation(this->Stations);
+    this->myEmulator = new Emulation(this->Stations, this->ui->lblSerialPort);
     this->mSerialTimer = new QTimer(this);
-    this->mSerialTimer->setInterval(_ms);
+    this->mSerialTimer->setInterval(*(this->TimeSpeed.data()));
 
     connect(this->mSerialTimer, &QTimer::timeout, this->myEmulator, &Emulation::Sender);
     connect(this->myEmulator->myPort, &QSerialPort::readyRead, this->myEmulator, &Emulation::Reader);
-    this->mSerialTimer->start();
+
+    this->ui->cbChangeTime->setCurrentText("1000");
+    this->ui->btnStartStop->setText("Start");
+    this->ui->btnStartStop->setStyleSheet("background-color: Green");
 }
 
 MainWindow::~MainWindow() {
@@ -32,3 +36,21 @@ MainWindow::~MainWindow() {
     delete this->Stations;
     delete ui;
 }
+
+void MainWindow::on_cbChangeTime_currentTextChanged(const QString &timeSelected) { this->TimeSpeed = QSharedPointer<unsigned int>(new unsigned int(timeSelected.toUInt())); }
+
+
+void MainWindow::on_btnStartStop_clicked() {
+    if(this->mSerialTimer->isActive()) {
+        this->mSerialTimer->stop();
+        this->myEmulator->myPort->close();
+        this->ui->btnStartStop->setText("Start");
+        this->ui->btnStartStop->setStyleSheet("background-color: Green");
+    } else {
+        this->myEmulator->myPort->open(QIODevice::ReadWrite);
+        this->mSerialTimer->start();
+        this->ui->btnStartStop->setText("Stop");
+        this->ui->btnStartStop->setStyleSheet("background-color: Red");
+    }
+}
+

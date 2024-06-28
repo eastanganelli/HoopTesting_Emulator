@@ -12,7 +12,7 @@
 class Emulation : public QObject {
     Q_OBJECT
 public:
-    Emulation(QList<QGroupBox*>* Stations_);
+    Emulation(QList<QGroupBox*>* Stations_, QLabel* status_);
     ~Emulation();
     QSerialPort* myPort;
 public slots:
