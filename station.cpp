@@ -65,8 +65,8 @@ void Station::breakTime()   { this->timeToBreak = !this->timeToBreak; }
 
 const u_int Station::getID() { return this->ID; }
 
-float Station::logCurve(const float _value, const u_int  _time, const u_int _condP) { return _value * log10(_time)/log10(_condP) + (pow(-1, rand()%(2)+1) * (rand()%10)/100); }
+float Station::logCurve(const float _value, const u_int  _time, const u_int _condP) { return _value * log10(_time)/log10(_condP) + (pow(-1, rand()%(2)+1) * (rand()%11)/1000); }
 
-float Station::linealCurve(const float _value) { return _value + (pow(-1, rand()%(2) + 1) * (rand()%10)/100); }
+float Station::linealCurve(const float _value) { return _value + (pow(-1, rand()%(2) + 1) * (rand()%11)/1000); }
 
-float Station::HoopBreak(const float _value, const u_int  _time) { return (-1) * _value * log10(_time); }
+float Station::HoopBreak(const float _value, const u_int  _time) { return (-1) * _value * log10(_time) + (pow(-1, rand()%(2) + 1) * (rand()%11)/1000); }
