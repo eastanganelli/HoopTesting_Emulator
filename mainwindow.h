@@ -13,21 +13,22 @@ QT_END_NAMESPACE
 
 class MainWindow : public QMainWindow {
     Q_OBJECT
-public:
-    MainWindow(QWidget *parent = nullptr);
-    ~MainWindow();
-private slots:
-    void on_cbChangeTime_currentTextChanged(const QString &timeSelected);
 
-    void on_btnStartStop_clicked();
-
-private:
     Ui::MainWindow *ui;
     QTimer* mSerialTimer;
     Emulation* myEmulator;
     QList<QGroupBox*>* Stations;
-    QSharedPointer<unsigned int> TimeSpeed
-;
+    QSharedPointer<unsigned int> TimeSpeed;
+
+public:
+    MainWindow(QWidget *parent = nullptr);
+    ~MainWindow();
+
+private slots:
+    void on_cbChangeTime_currentTextChanged(const QString &timeSelected);
+    void on_btnStartStop_clicked();
+    void on_btnBreak_clicked();
+
 };
 
 #endif // MAINWINDOW_H

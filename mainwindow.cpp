@@ -14,7 +14,7 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent) , ui(new Ui::MainW
     this->Stations->append(this->ui->station_5);
     this->Stations->append(this->ui->station_6);
 
-    this->myEmulator = new Emulation(this->Stations, this->ui->lblSerialPort);
+    this->myEmulator = new Emulation(this->Stations, this->ui->lblSerialPort, this->ui->cbChangeTime);
     this->mSerialTimer = new QTimer(this);
     this->mSerialTimer->setInterval(*(this->TimeSpeed.data()));
 
@@ -39,7 +39,6 @@ MainWindow::~MainWindow() {
 
 void MainWindow::on_cbChangeTime_currentTextChanged(const QString &timeSelected) { this->TimeSpeed = QSharedPointer<unsigned int>(new unsigned int(timeSelected.toUInt())); }
 
-
 void MainWindow::on_btnStartStop_clicked() {
     if(this->mSerialTimer->isActive()) {
         this->mSerialTimer->stop();
@@ -54,3 +53,12 @@ void MainWindow::on_btnStartStop_clicked() {
     }
 }
 
+void MainWindow::on_btnBreak_clicked() {
+    if(!this->ui->cbActiveStation->currentText().isEmpty()) {
+        uint auxID = this->ui->cbActiveStation->currentText().toUInt();
+        qDebug() << "ID Station -> " << this->ui->cbActiveStation->currentText().toUInt();
+        for(Station* aux : this->myEmulator->getStations()) {
+            if(aux->getID() == auxID) { aux->breakTime(); }
+        }
+    }
+}

@@ -4,7 +4,7 @@
  * @brief Emulation::Emulation
  * @param Stations_
  */
-Emulation::Emulation(QList<QGroupBox*>* Stations_, QLabel* status_) {
+Emulation::Emulation(QList<QGroupBox*>* Stations_, QLabel* status_, QComboBox* cbActiveStation_) {
     this->uiStations_ = Stations_;
     this->myPort = new QSerialPort();
     this->myPort->setPortName("COM28");
@@ -13,6 +13,7 @@ Emulation::Emulation(QList<QGroupBox*>* Stations_, QLabel* status_) {
     this->myPort->setParity(QSerialPort::NoParity);
     this->myPort->setStopBits(QSerialPort::OneStop);
     this->myPort->open(QIODevice::ReadWrite);
+    this->cbActiveStation = cbActiveStation_;
 
     if(this->myPort->isOpen()) {
         status_->setText("Serial Port: " + this->myPort->portName());
@@ -34,6 +35,8 @@ Emulation::~Emulation() {
     delete this->myPort;
 }
 
+QList<Station *> Emulation::getStations() { return this->myStations; }
+
 /**
  * @brief Emulation::Reader
  */
@@ -45,13 +48,9 @@ void Emulation::Reader() {
     QByteArray line = this->buffer.mid(0, index);
     buffer.remove(0, index + 1);
 
-    //qDebug() << line;
     QList<QByteArray> substring = line.split(',');
-    if(substring.length() > 2) {
-        this->stationStarter(substring);
-    } else if (substring.length() == 2) {
-        this->stationsStateController(substring);
-    }
+    if(substring.length() > 2)        { this->stationStarter(substring); }
+    else if (substring.length() == 2) { this->stationsStateController(substring); }
 }
 
 /**
@@ -73,8 +72,8 @@ void Emulation::Sender() {
  */
 void Emulation::stationStarter(const QList<QByteArray> substring) {
     u_int ID = substring[1].toUInt(),
-        pressure = substring[2].toUInt(),
-        temperature = substring[3].toUInt();
+          pressure = substring[2].toUInt(),
+          temperature = substring[3].toUInt();
     QGroupBox* stationUI = this->uiStations_->at(ID - 1);
     Station* aux = ((substring.length() == 4 && substring[0].toStdString() == "start") ? new Station(stationUI, ID, pressure, temperature) : new Station(stationUI, ID, pressure, temperature, substring[3].toUInt()));
     this->myStations.append(aux);
