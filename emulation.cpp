@@ -1,4 +1,5 @@
 #include "emulation.h"
+#include <algorithm>
 
 /**
  * @brief Emulation::Emulation
@@ -74,10 +75,9 @@ void Emulation::stationStarter(const QList<QByteArray> substring) {
     u_int ID = substring[1].toUInt(),
           pressure = substring[2].toUInt(),
           temperature = substring[3].toUInt();
-    QList<Station*>::Iterator it = std::find(this->myStations.begin(), this->myStations.end(), ID);
-    if(it == nullptr) {
+    if(Station::doesExist(ID, this->myStations) == nullptr) {
         QGroupBox* stationUI = this->uiStations_->at(ID - 1);
-        Station* aux = ((substring.length() == 4 && substring[0].toStdString() == "start") ? new Station(stationUI, ID, pressure - 0.1, temperature - 0.15) : new Station(stationUI, ID, pressure - 0.1, temperature - 0.15, substring[3].toUInt()));
+        Station* aux = ((substring.length() == 4 && substring[0].toStdString() == "start") ? new Station(stationUI, ID, pressure, temperature) : new Station(stationUI, ID, pressure, temperature, substring[3].toUInt()));
         this->myStations.append(aux);
     }
 }
@@ -89,14 +89,5 @@ void Emulation::stationStarter(const QList<QByteArray> substring) {
 void Emulation::stationsStateController(QList<QByteArray> &substring) {
     u_int ID = substring[1].toUInt();
 
-    if(substring[0].toStdString() == "stop") {
-        unsigned int i = 0;
-        for(Station* myStation : this->myStations) {
-            if(myStation->getID() == ID) {
-                delete myStation;
-                this->myStations.removeAt(i);
-                qDebug() << "Station " << ID << " stopped";
-            } i++;
-        }
-    }
+    if(substring[0].toStdString() == "stop") { Station::removeStation(ID, this->myStations); }
 }

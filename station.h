@@ -20,7 +20,7 @@ class Station : public QObject{
 
     QGroupBox* myUI;
     u_int i;
-    const float ID, targetPressure, targetTemp, condPeriod;
+    const float ID, targetPressure, targetTemp, desviationP, desviationT, condPeriod;
     float actualPresure, actualTemp;
     bool timeToBreak;
 
@@ -31,6 +31,9 @@ public:
     QByteArray emulate();
     void breakTime();
     const u_int getID();
+
+    static Station* doesExist(const u_int ID, QList<Station *> &stations);
+    static void removeStation(const u_int ID, QList<Station *> &stations);
 };
 
 #endif // STATION_H

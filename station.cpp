@@ -1,6 +1,7 @@
 #include "station.h"
+#include <algorithm>
 
-Station::Station(QGroupBox *uiStation, const float ID_, const float tPressure_, const u_int tTemp) : ID(ID_), targetPressure(tPressure_), targetTemp(tTemp), condPeriod(0) {
+Station::Station(QGroupBox *uiStation, const float ID_, const float tPressure_, const u_int tTemp) : ID(ID_), targetPressure(tPressure_), targetTemp(tTemp), desviationP(0.1), desviationT(0.15), condPeriod(0) {
     this->i = 0;
     this->myUI = uiStation;
     QLabel* Status = this->myUI->findChild<QLabel*>("lblStation_"   + QString::number(ID_));
@@ -14,7 +15,7 @@ Station::Station(QGroupBox *uiStation, const float ID_, const float tPressure_, 
     this->timeToBreak   = false;
 }
 
-Station::Station(QGroupBox *uiStation, const u_int ID_, const float tPressure_, const float tTemp, const u_int CPeriod) : ID(ID_), targetPressure(tPressure_), targetTemp(tTemp), condPeriod(CPeriod) {
+Station::Station(QGroupBox *uiStation, const u_int ID_, const float tPressure_, const float tTemp, const u_int CPeriod) : ID(ID_), targetPressure(tPressure_), targetTemp(tTemp), desviationP(0.1), desviationT(0.15), condPeriod(CPeriod) {
     this->i = 0;
     this->myUI = uiStation;
     QLabel* Status = this->myUI->findChild<QLabel*>("lblStation_"   + QString::number(ID_));
@@ -53,7 +54,7 @@ QByteArray Station::emulate() {
         this->actualPresure = Station::HoopBreak(this->targetPressure, this->i);
         this->actualTemp    = Station::HoopBreak(this->targetTemp, this->i);
     }
-    msg = QString::number(this->ID) + "," + QString::number(this->actualPresure, 'f', 2) + "," + QString::number(this->actualTemp, 'f', 2) + "\n";
+    msg = QString::number(this->ID) + "," + QString::number(this->actualPresure - this->desviationP, 'f', 2) + "," + QString::number(this->actualTemp - this->desviationT, 'f', 2) + "\n";
 
     this->myUI->findChild<QLabel*>("lblStationRP_" + QString::number(this->ID))->setText("Pressure: " + QString::number(this->actualPresure, 'f', 2) + " bar");
     this->myUI->findChild<QLabel*>("lblStationRT_" + QString::number(this->ID))->setText("Temp: " + QString::number(this->actualTemp, 'f', 2) + " C");
@@ -64,6 +65,24 @@ QByteArray Station::emulate() {
 void Station::breakTime()   { this->timeToBreak = !this->timeToBreak; }
 
 const u_int Station::getID() { return this->ID; }
+
+Station *Station::doesExist(const u_int ID, QList<Station *> &stations) {
+    QList<Station*>::Iterator itObject = std::find_if(stations.begin(), stations.end(), [ID](Station* station) { return station->getID() == ID; });
+    if(itObject != stations.end()) {
+        qDebug() << "Station " << ID << " is active!";
+        return *itObject;
+    }
+    qDebug() << "Station " << ID << " is NOT active!";
+    return nullptr;
+}
+
+void Station::removeStation(const u_int ID, QList<Station *> &stations) {
+    QList<Station*>::Iterator itObject = std::find_if(stations.begin(), stations.end(), [ID](Station* station) { return station->getID() == ID; });
+    u_int index = std::distance(stations.begin(), itObject);
+    stations.removeAt(index);
+    qDebug() << "Station " << (*itObject)->getID() << " is being removed!";
+    delete *itObject;
+}
 
 float Station::logCurve(const float _value, const u_int  _time, const u_int _condP) { return _value * log10(_time)/log10(_condP) + (pow(-1, rand()%(2)+1) * ((float)(rand()%11)/100)); }
 

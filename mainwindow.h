@@ -28,7 +28,7 @@ private slots:
     void on_cbChangeTime_currentTextChanged(const QString &timeSelected);
     void on_btnStartStop_clicked();
     void on_btnBreak_clicked();
-
+    void on_cbActiveStation_currentIndexChanged(int index);
 };
 
 #endif // MAINWINDOW_H

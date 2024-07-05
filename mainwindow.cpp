@@ -45,17 +45,19 @@ void MainWindow::on_btnStartStop_clicked() {
         this->mSerialTimer->stop();
         this->ui->cbChangeTime->setEnabled(true);
         this->ui->cbActiveStation->setEnabled(false);
-        this->ui->btnBreak->setEnabled(false);
         this->myEmulator->myPort->close();
         this->ui->btnStartStop->setText("Start");
-        this->ui->btnStartStop->setStyleSheet("background-color: Green");
+        this->ui->btnStartStop->setStyleSheet("background-color: Green"); {
+            QList<Station*> auxList = this->myEmulator->getStations();
+            for(u_int i = 1; i <= 6; i++) {
+                Station::removeStation(i, auxList);
+            }
+        }
     } else {
-        // if(!this->Stations->empty()) { this->Stations->clear(); }
         this->myEmulator->myPort->open(QIODevice::ReadWrite);
         this->mSerialTimer->start();
         this->ui->cbChangeTime->setEnabled(false);
         this->ui->cbActiveStation->setEnabled(true);
-        this->ui->btnBreak->setEnabled(true);
         this->ui->btnStartStop->setText("Stop");
         this->ui->btnStartStop->setStyleSheet("background-color: Red");
     }
@@ -64,13 +66,16 @@ void MainWindow::on_btnStartStop_clicked() {
 void MainWindow::on_btnBreak_clicked() {
     if(!this->ui->cbActiveStation->currentText().isEmpty()) {
         uint auxID = this->ui->cbActiveStation->currentText().toUInt();
-        for(Station* aux : this->myEmulator->getStations()) {
-            if(aux->getID() == auxID) {
-                qDebug() << "Hoop " << aux->getID() << " has been broken";
-                aux->breakTime();
-                break;
-            }
+        QList<Station*>auxStations = this->myEmulator->getStations();
+        Station* myStation = Station::doesExist(auxID, auxStations);
+        if(myStation != nullptr) {
+            qDebug() << "Hoop " << myStation->getID() << " has been broken";
+            myStation->breakTime();
         }
         this->ui->cbActiveStation->setCurrentIndex(-1);
     }
+}
+void MainWindow::on_cbActiveStation_currentIndexChanged(int index) {
+    if(index > -1) { this->ui->btnBreak->setEnabled(true); }
+    else { this->ui->btnBreak->setEnabled(false); }
 }
