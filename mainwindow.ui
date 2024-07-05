@@ -1057,17 +1057,30 @@ QLabel {
        </item>
        <item>
         <widget class="QComboBox" name="cbActiveStation">
+         <property name="enabled">
+          <bool>false</bool>
+         </property>
+         <property name="contextMenuPolicy">
+          <enum>Qt::DefaultContextMenu</enum>
+         </property>
          <property name="currentText">
           <string/>
+         </property>
+         <property name="maxVisibleItems">
+          <number>6</number>
+         </property>
+         <property name="maxCount">
+          <number>6</number>
+         </property>
+         <property name="insertPolicy">
+          <enum>QComboBox::NoInsert</enum>
+         </property>
+         <property name="sizeAdjustPolicy">
+          <enum>QComboBox::AdjustToContents</enum>
          </property>
          <property name="placeholderText">
           <string>Break station Hoop</string>
          </property>
-         <item>
-          <property name="text">
-           <string/>
-          </property>
-         </item>
          <item>
           <property name="text">
            <string>1</string>
@@ -1102,6 +1115,9 @@ QLabel {
        </item>
        <item>
         <widget class="QPushButton" name="btnBreak">
+         <property name="enabled">
+          <bool>false</bool>
+         </property>
          <property name="text">
           <string>Break Hoop</string>
          </property>

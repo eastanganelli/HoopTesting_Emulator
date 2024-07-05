@@ -1,6 +1,6 @@
 #include "station.h"
 
-Station::Station(QGroupBox *uiStation, const u_int ID_, const u_int tPressure_, const u_int tTemp) : ID(ID_), targetPressure(tPressure_), targetTemp(tTemp), condPeriod(0) {
+Station::Station(QGroupBox *uiStation, const float ID_, const float tPressure_, const u_int tTemp) : ID(ID_), targetPressure(tPressure_), targetTemp(tTemp), condPeriod(0) {
     this->i = 0;
     this->myUI = uiStation;
     QLabel* Status = this->myUI->findChild<QLabel*>("lblStation_"   + QString::number(ID_));
@@ -14,7 +14,7 @@ Station::Station(QGroupBox *uiStation, const u_int ID_, const u_int tPressure_, 
     this->timeToBreak   = false;
 }
 
-Station::Station(QGroupBox *uiStation, const u_int ID_, const u_int tPressure_, const u_int tTemp, const u_int CPeriod) : ID(ID_), targetPressure(tPressure_), targetTemp(tTemp), condPeriod(CPeriod) {
+Station::Station(QGroupBox *uiStation, const u_int ID_, const float tPressure_, const float tTemp, const u_int CPeriod) : ID(ID_), targetPressure(tPressure_), targetTemp(tTemp), condPeriod(CPeriod) {
     this->i = 0;
     this->myUI = uiStation;
     QLabel* Status = this->myUI->findChild<QLabel*>("lblStation_"   + QString::number(ID_));
@@ -65,8 +65,8 @@ void Station::breakTime()   { this->timeToBreak = !this->timeToBreak; }
 
 const u_int Station::getID() { return this->ID; }
 
-float Station::logCurve(const float _value, const u_int  _time, const u_int _condP) { return _value * log10(_time)/log10(_condP) + (pow(-1, rand()%(2)+1) * (rand()%11)/1000); }
+float Station::logCurve(const float _value, const u_int  _time, const u_int _condP) { return _value * log10(_time)/log10(_condP) + (pow(-1, rand()%(2)+1) * ((float)(rand()%11)/100)); }
 
-float Station::linealCurve(const float _value) { return _value + (pow(-1, rand()%(2) + 1) * (rand()%11)/1000); }
+float Station::linealCurve(const float _value) { return _value + (pow(-1, rand()%(2) + 1) * ((float)(rand()%11)/100)); }
 
-float Station::HoopBreak(const float _value, const u_int  _time) { return (-1) * _value * log10(_time) + (pow(-1, rand()%(2) + 1) * (rand()%11)/1000); }
+float Station::HoopBreak(const float _value, const u_int  _time) { return ((_value/10) * (-1) * log10(_time)) + (pow(-1, rand()%(2) + 1) * ((float)(rand()%11)/100)); }

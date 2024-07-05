@@ -24,6 +24,7 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent) , ui(new Ui::MainW
     this->ui->cbChangeTime->setCurrentText("1000");
     this->ui->btnStartStop->setText("Start");
     this->ui->btnStartStop->setStyleSheet("background-color: Green");
+    this->ui->cbActiveStation->setCurrentIndex(-1);
 }
 
 MainWindow::~MainWindow() {
@@ -42,12 +43,19 @@ void MainWindow::on_cbChangeTime_currentTextChanged(const QString &timeSelected)
 void MainWindow::on_btnStartStop_clicked() {
     if(this->mSerialTimer->isActive()) {
         this->mSerialTimer->stop();
+        this->ui->cbChangeTime->setEnabled(true);
+        this->ui->cbActiveStation->setEnabled(false);
+        this->ui->btnBreak->setEnabled(false);
         this->myEmulator->myPort->close();
         this->ui->btnStartStop->setText("Start");
         this->ui->btnStartStop->setStyleSheet("background-color: Green");
     } else {
+        // if(!this->Stations->empty()) { this->Stations->clear(); }
         this->myEmulator->myPort->open(QIODevice::ReadWrite);
         this->mSerialTimer->start();
+        this->ui->cbChangeTime->setEnabled(false);
+        this->ui->cbActiveStation->setEnabled(true);
+        this->ui->btnBreak->setEnabled(true);
         this->ui->btnStartStop->setText("Stop");
         this->ui->btnStartStop->setStyleSheet("background-color: Red");
     }
@@ -56,9 +64,13 @@ void MainWindow::on_btnStartStop_clicked() {
 void MainWindow::on_btnBreak_clicked() {
     if(!this->ui->cbActiveStation->currentText().isEmpty()) {
         uint auxID = this->ui->cbActiveStation->currentText().toUInt();
-        qDebug() << "ID Station -> " << this->ui->cbActiveStation->currentText().toUInt();
         for(Station* aux : this->myEmulator->getStations()) {
-            if(aux->getID() == auxID) { aux->breakTime(); }
+            if(aux->getID() == auxID) {
+                qDebug() << "Hoop " << aux->getID() << " has been broken";
+                aux->breakTime();
+                break;
+            }
         }
+        this->ui->cbActiveStation->setCurrentIndex(-1);
     }
 }

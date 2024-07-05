@@ -20,13 +20,13 @@ class Station : public QObject{
 
     QGroupBox* myUI;
     u_int i;
-    const u_int ID, targetPressure, targetTemp, condPeriod;
+    const float ID, targetPressure, targetTemp, condPeriod;
     float actualPresure, actualTemp;
     bool timeToBreak;
 
 public:
-    Station(QGroupBox* uiStation, const u_int ID_, const u_int tPressure_, const u_int tTemp);
-    Station(QGroupBox* uiStation, const u_int ID_, const u_int tPressure_, const u_int tTemp, const u_int CPeriod);
+    Station(QGroupBox* uiStation, const float ID_, const float tPressure_, const u_int tTemp);
+    Station(QGroupBox* uiStation, const u_int ID_, const float tPressure_, const float tTemp, const u_int CPeriod);
     ~Station();
     QByteArray emulate();
     void breakTime();

@@ -74,9 +74,12 @@ void Emulation::stationStarter(const QList<QByteArray> substring) {
     u_int ID = substring[1].toUInt(),
           pressure = substring[2].toUInt(),
           temperature = substring[3].toUInt();
-    QGroupBox* stationUI = this->uiStations_->at(ID - 1);
-    Station* aux = ((substring.length() == 4 && substring[0].toStdString() == "start") ? new Station(stationUI, ID, pressure, temperature) : new Station(stationUI, ID, pressure, temperature, substring[3].toUInt()));
-    this->myStations.append(aux);
+    QList<Station*>::Iterator it = std::find(this->myStations.begin(), this->myStations.end(), ID);
+    if(it == nullptr) {
+        QGroupBox* stationUI = this->uiStations_->at(ID - 1);
+        Station* aux = ((substring.length() == 4 && substring[0].toStdString() == "start") ? new Station(stationUI, ID, pressure - 0.1, temperature - 0.15) : new Station(stationUI, ID, pressure - 0.1, temperature - 0.15, substring[3].toUInt()));
+        this->myStations.append(aux);
+    }
 }
 
 /**
