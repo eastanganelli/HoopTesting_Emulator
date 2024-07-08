@@ -52,7 +52,7 @@ QByteArray Station::emulate() {
         }
     } else {
         this->actualPresure = Station::HoopBreak(this->targetPressure, this->i);
-        this->actualTemp    = Station::HoopBreak(this->targetTemp, this->i);
+        this->actualTemp    = Station::linealCurve(this->targetTemp);
     }
     msg = QString::number(this->ID) + "," + QString::number(this->actualPresure - this->desviationP, 'f', 2) + "," + QString::number(this->actualTemp - this->desviationT, 'f', 2) + "\n";
 
